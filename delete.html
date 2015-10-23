@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>SeriesWatchMan</title>
+</head>
+<body>
+<div id="dvHeader">
+<p>
+<b>Logout</b> <a href="{{access_link}}">{{user_name}}</a>
+</p>
+</div>
+<div id="dvTitle">
+<p>Borrar serie</p>
+</div>
+<div id="dvOutput">
+<p>
+{{serie.name}} {{serie.lastEpisode // 1000}}x{{serie.lastEpisode % 1000}}
+<br><img src="{{serie.picture}}">
+<br><a href="{{serie.web}}">Web</a>
+<br>{{serie.comments}}
+</p>
+</div>
+<div id="frmInput">
+<form id="frmInput" action="/delete?id={{serie.key.urlsafe()}}" method="post"
+				  style="background-color:lightgray">
+	<input type="submit"/>
+</form>
+</div>
+</body>
+</html>

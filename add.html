@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>SeriesWatchMan</title>
+</head>
+<body>
+<div id="dvHeader">
+<p>
+<b>Logout</b> <a href="{{access_link}}">{{user_name}}</a>
+</p>
+</div>
+<div id="dvTitle">
+<p>Añadir serie</p>
+</div>
+<div id="dvInput">
+<p>
+<form id="frmInput" action="/add" method="post"
+				  style="background-color:lightgray">
+	<p>
+	Nombre: <input type="text" name="name" id="edName" size="80"
+			placeholder="nombre de la serie..."
+ 			style="border:none;background-color:lightgray"/>
+	<br>
+	Web: <input type="text" name="web" id="edWeb" size="80"
+			placeholder="web..."
+ 			style="border:none;background-color:lightgray"/>
+
+	<br>
+	Picture Url: <input type="text" name="picture" id="edPicture" size="80"
+			placeholder="picture url..."
+ 			style="border:none;background-color:lightgray"/>
+
+	<br>
+	Comments: <input type="text" name="comments" id="edComments" size="100"
+			placeholder="comentarios..."
+ 			style="border:none;background-color:lightgray"/>
+
+	</p>
+	<input type="submit" value="Enviar">
+</form>
+</p>
+</div>
+</body>
+</html>
