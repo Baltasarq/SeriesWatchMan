@@ -72,6 +72,6 @@ class ModifyHandler(webapp2.RequestHandler):
 		serie.lastEpisode = (season * 1000) + episode
 		serie.put()
 		time.sleep(1)
-		self.redirect("/main")
+		self.redirect("/main?id=" + serie.key.urlsafe())
 	else:
 		self.redirect("/")

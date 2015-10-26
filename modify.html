@@ -2,21 +2,26 @@
 <html>
 <head>
 	<meta charset="utf-8"/>
+	<link rel="stylesheet" href="template.css"/>
 	<title>SeriesWatchMan</title>
 </head>
 <body>
 <div id="dvHeader">
-<p>
-<b>Logout</b> <a href="{{access_link}}">{{user_name}}</a>
-</p>
+	<p>
+	<table width="100%">
+		<tr>
+			<td width="80%"><b>Logout</b> <a href="{{access_link}}">{{user_name}}</a></td>
+			<td width="20%">SeriesWatchMan</td>
+		</tr>
+	</table>
+	</p>
 </div>
 <div id="dvTitle">
 <p>Modificar serie</p>
 </div>
-<div id="dvInput">
+<div id="dvSeries">
 <p>
-<form id="frmInput" action="/modify?id={{serie.key.urlsafe()}}" method="post"
-				  style="background-color:lightgray">
+<form id="tblSeries" action="/modify?id={{serie.key.urlsafe()}}" method="post">
 	<p>
 	Nombre: <input type="text" name="name" id="edName" size="80"
 			value="{{serie.name}}"
@@ -41,10 +46,12 @@
 	Comments: <input type="text" name="comments" id="edComments" size="100"
 			value="{{serie.comments}}"
  			style="border:none;background-color:lightgray"/>
+	<p><input class="styled-button" type="submit" value="+">
 	</p>
-	<input type="submit" value="Enviar">
 </form>
-</p>
+</div>
+<div id="dvActions">
+	<input class="styled-button" type="button" value="<<" onClick="javascript:window.location='/main';">
 </div>
 </body>
 </html>

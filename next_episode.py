@@ -29,6 +29,6 @@ class NextEpisodeHandler(webapp2.RequestHandler):
 		serie.lastEpisode += 1
 		serie.put()
 		time.sleep(1)
-		self.redirect("/main")
+		self.redirect("/main?id=" + serie.key.urlsafe())
 	else:
 		self.redirect("/")

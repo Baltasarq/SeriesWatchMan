@@ -2,40 +2,46 @@
 <html>
 <head>
 	<meta charset="utf-8"/>
+	<link rel="stylesheet" href="template.css">
 	<title>SeriesWatchMan</title>
 </head>
 <body>
 <div id="dvHeader">
 <p>
-<b>Logout</b> <a href="{{access_link}}">{{user_name}}</a>
+<table width="100%">
+	<tr>
+		<td width="80%"><b>Logout</b> <a href="{{access_link}}">{{user_name}}</a></td>
+		<td width="20%">SeriesWatchMan</td>
+	</tr>
+</table>
 </p>
 </div>
 <div id="dvTitle">
-<p>Siguiendo series</p>
+<p>Siguiendo las series</p>
 </div>
-<div>
-<p>
+<div id="dvSeries">
     {% for serie in series %}
-	<table border="0"><tr><td>
-	{{serie.name}} ({{serie.added}})
-	{{serie.lastEpisode // 1000}}x{{serie.lastEpisode % 1000}}
-	<br><a target="_blank" href="{{serie.web}}">Web</a>
-	<br>{{serie.comments}}
-	<br>
-	<a href="/nextEpisode?id={{serie.key.urlsafe()}}">Episode seen</a>
-	<a href="/nextSeason?id={{serie.key.urlsafe()}}">Season seen</a>
-	<br>
-	<a href="/modify?id={{serie.key.urlsafe()}}">Modify</a>
-	<a href="/delete?id={{serie.key.urlsafe()}}">Delete</a>
-	</td>
-	<td><img src="{{serie.picture}}"/></td>
-	</tr>
-	</table>
+			<table id="tblSeries" border="0"><tr>
+			<td width="30%"><img src="{{serie.picture}}"/></td>
+			<td width="70%">
+			{{serie.name}} ({{serie.added}})
+			<br><big>{{serie.lastEpisode // 1000}}x{{serie.lastEpisode % 1000}}</big>
+			<br><a target="_blank" href="{{serie.web}}">Web</a>
+			<br>{{serie.comments}}
+			<br>
+			<a href="/nextEpisode?id={{serie.key.urlsafe()}}">Episode seen</a>
+			<a href="/nextSeason?id={{serie.key.urlsafe()}}">Season seen</a>
+			<br>
+			<a href="/modify?id={{serie.key.urlsafe()}}">Modify</a>
+			<a href="/delete?id={{serie.key.urlsafe()}}">Delete</a>
+			</td>
+			</tr>
+			</table>
+			<br/>
     {% endfor %}
-</p>
 </div>
 <div id="dvActions">
-<a href="/add">Add</a>
+<input class="styled-button" type="button" value='+' onClick="javascript:window.location='/add'"/>
 </div>
 </body>
 </html>
