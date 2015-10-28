@@ -25,8 +25,8 @@ class MainHandler(webapp2.RequestHandler):
         user_name = "Please login"
         user = users.get_current_user()
         if user != None:
-                user_name = user.nickname()
-                access_link = users.create_logout_url("/")
+                self.redirect("/main")
+		return
         else:
                 access_link = users.create_login_url("/main")
 

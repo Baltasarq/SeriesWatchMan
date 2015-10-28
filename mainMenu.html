@@ -21,27 +21,36 @@
 </div>
 <div id="dvSeries">
     {% for serie in series %}
-			<table id="tblSeries" border="0"><tr>
-			<td width="30%"><img src="{{serie.picture}}"/></td>
-			<td width="70%">
-			{{serie.name}} ({{serie.added}})
+			<div id="tblSeries">
+			<p align="right"><img src="{{serie.picture}}"/></p>
+			<p>
+			<b><big>{{serie.name}}</big></b> <i>({{serie.added}})</i>
 			<br><big>{{serie.lastEpisode // 1000}}x{{serie.lastEpisode % 1000}}</big>
 			<br><a target="_blank" href="{{serie.web}}">Web</a>
 			<br>{{serie.comments}}
-			<br>
-			<a href="/nextEpisode?id={{serie.key.urlsafe()}}">Episode seen</a>
-			<a href="/nextSeason?id={{serie.key.urlsafe()}}">Season seen</a>
-			<br>
-			<a href="/modify?id={{serie.key.urlsafe()}}">Modify</a>
-			<a href="/delete?id={{serie.key.urlsafe()}}">Delete</a>
-			</td>
-			</tr>
-			</table>
+			</p>
+			<input class="styled-button" type="button" value='&uarr;'
+				title="next episode"
+				onClick="javascript:window.location='/nextEpisode?id={{serie.key.urlsafe()}}'"
+				/>
+			<input class="styled-button" type="button" value='&uArr;'
+				title="next season"
+				onClick="javascript:window.location='/nextSeason?id={{serie.key.urlsafe()}}'"
+				/>
+			<input class="styled-button" type="button" value='+'
+				title="modify"
+				onClick="javascript:window.location='/modify?id={{serie.key.urlsafe()}}'"
+				/>
+			<input class="styled-button" type="button" value='&#9003;'
+				title="erase"
+				onClick="javascript:window.location='/delete?id={{serie.key.urlsafe()}}'"
+				/>
+			</div>
 			<br/>
     {% endfor %}
 </div>
 <div id="dvActions">
-<input class="styled-button" type="button" value='+' onClick="javascript:window.location='/add'"/>
+<input class="styled-button" title="add" type="button" value='+' onClick="javascript:window.location='/add'"/>
 </div>
 </body>
 </html>

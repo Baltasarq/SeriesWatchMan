@@ -8,7 +8,7 @@ class Serie(ndb.Model):
 	user = ndb.StringProperty(required = True)
 	name = ndb.StringProperty(required = True)
 	picture = ndb.StringProperty()
-	added = ndb.DateTimeProperty(auto_now_add = True)
+	added = ndb.DateProperty(auto_now_add = True)
 	lastEpisode = ndb.IntegerProperty(required = True)
 	web = ndb.StringProperty()
 	comments = ndb.StringProperty()
