@@ -29,28 +29,17 @@
 			<br><a target="_blank" href="{{serie.web}}">Web</a>
 			<br>{{serie.comments}}
 			</p>
-			<input class="styled-button" type="button" value='&uarr;'
-				title="next episode"
-				onClick="javascript:window.location='/nextEpisode?id={{serie.key.urlsafe()}}'"
-				/>
-			<input class="styled-button" type="button" value='&uArr;'
-				title="next season"
-				onClick="javascript:window.location='/nextSeason?id={{serie.key.urlsafe()}}'"
-				/>
-			<input class="styled-button" type="button" value='+'
-				title="modify"
-				onClick="javascript:window.location='/modify?id={{serie.key.urlsafe()}}'"
-				/>
-			<input class="styled-button" type="button" value='&#9003;'
-				title="erase"
-				onClick="javascript:window.location='/delete?id={{serie.key.urlsafe()}}'"
-				/>
+			<a href="/nextEpisode?id={{serie.key.urlsafe()}}"><img width="16px" height="16px" title="next episode" class="styled-button" src="/res/up.svg"/></a>
+			<a href="/nextSeason?id={{serie.key.urlsafe()}}"><img width="16px" height="16px" title="next season" class="styled-button" src="/res/double-up.svg"/></a>
+			<a href="/modify?id={{serie.key.urlsafe()}}"><img width="16px" height="16px" title="modify" class="styled-button" src="/res/modify.svg"/></a>
+			<a href="/delete?id={{serie.key.urlsafe()}}"><img width="16px" height="16px" title="delete" class="styled-button" src="/res/delete.svg"/></a>
 			</div>
 			<br/>
     {% endfor %}
 </div>
 <div id="dvActions">
-<input class="styled-button" title="add" type="button" value='+' onClick="javascript:window.location='/add'"/>
+	<a href="/add"><img height="24px" width="24px" title="add" class="styled-button" src="/res/add.svg"/></a>
+</input>
 </div>
 </body>
 </html>

@@ -23,7 +23,7 @@
 <p>
 <form id="tblSeries" action="/modify?id={{serie.key.urlsafe()}}" method="post">
 	<p>
-	Nombre: <input type="text" name="name" id="edName" size="80"
+	Name: <input type="text" name="name" id="edName" size="80"
 			value="{{serie.name}}"
  			style="border:none;background-color:lightgray"/>
 	<br>
@@ -43,15 +43,22 @@
 			value="{{serie.picture}}"
  			style="border:none;background-color:lightgray"/>
 	<br>
-	Comments: <input type="text" name="comments" id="edComments" size="100"
-			value="{{serie.comments}}"
- 			style="border:none;background-color:lightgray"/>
-	<p><input class="styled-button" type="submit" value="+">
+	Comments: <TextArea name="comments" id="edComments" rows="4" cols="80"
+ 			style="border:none;background-color:lightgray">
+{{serie.comments}}
+	</textarea>
+	<p>
+		<input type="image"
+		 	width="16px" height="16px"
+			class="styled-button" src="/res/modify.svg"
+		 	title="modify" alt="modify"
+			onSubmit="javascript: document.tblSeries.submit()"
+			/>
 	</p>
 </form>
 </div>
 <div id="dvActions">
-	<input class="styled-button" type="button" value="<<" onClick="javascript:window.location='/main';">
+	<a href="/main"><img width="24px" height="24px" alt="back" title="back" class="styled-button" src="/res/back.svg"/></a>
 </div>
 </body>
 </html>

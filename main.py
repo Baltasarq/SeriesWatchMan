@@ -8,6 +8,7 @@ import os
 import webapp2
 import jinja2
 
+from error import ErrorHandler
 from mainMenu import MainMenuHandler
 from add import AddHandler
 from modify import ModifyHandler
@@ -44,6 +45,7 @@ app = webapp2.WSGIApplication([
     ("/add", AddHandler),
     ("/modify", ModifyHandler),
     ("/delete", DeleteHandler),
+    ("/error", ErrorHandler),
     ("/nextEpisode", NextEpisodeHandler),
     ("/nextSeason", NextSeasonHandler),
 ], debug=True)

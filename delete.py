@@ -19,45 +19,60 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 class DeleteHandler(webapp2.RequestHandler):
     def get(self):
-	id = self.request.GET['id']
+        try:
+    	    id = self.request.GET['id']
+        except:
+            id = None
+
+        if id == None:
+            self.redirect("/error?msg=serie was not found")
+            return
+
         user = users.get_current_user()
 
-	if (user != None
-	and id != None):
-		user_name = user.nickname()
-		access_link = users.create_logout_url("/")
+    	if user != None:
+    		user_name = user.nickname()
+    		access_link = users.create_logout_url("/")
 
-		try:
-			serie = ndb.Key(urlsafe = id).get()
-		except:
-			self.redirect("/main")
-			return
+    		try:
+    			serie = ndb.Key(urlsafe = id).get()
+    		except:
+    			self.redirect("/error?msg=key was not found")
+    			return
 
-		template_values = {
-			"user_name": user_name,
-			"access_link": access_link,
-			"serie": serie,
-		}
+    		template_values = {
+    			"user_name": user_name,
+    			"access_link": access_link,
+    			"serie": serie,
+    		}
 
-		template = JINJA_ENVIRONMENT.get_template( "delete.html" )
-		self.response.write(template.render(template_values));
-	else:
-		self.redirect("/")
+    		template = JINJA_ENVIRONMENT.get_template( "delete.html" )
+    		self.response.write(template.render(template_values));
+    	else:
+    		self.redirect("/")
 
     def post(self):
-	id = self.request.GET['id']
-	user = users.get_current_user()
+        try:
+    	    id = self.request.GET['id']
+        except:
+            id = None
 
-	if (user != None
-	and id != None):
-		try:
-			serie = ndb.Key(urlsafe = id).get()
-		except:
-			self.redirect("/main")
-			return
+        if id == None:
+            self.redirect("/error?msg=id missing for deletion")
+            return
 
-		serie.key.delete();
-		time.sleep(1)
-		self.redirect("/main")
-	else:
-		self.redirect("/")
+    	user = users.get_current_user()
+
+    	if (user != None
+    	and id != None):
+    		try:
+    			serie = ndb.Key(urlsafe = id).get()
+    		except:
+    			self.redirect("/error?msg=key was not found")
+    			return
+
+    		serie.key.delete();
+    		time.sleep(1)
+    		self.redirect("/main")
+    	else:
+    		self.redirect("/")

@@ -21,17 +21,23 @@
 </div>
 <div id="dvSeries">
 <form id="tblSeries" action="/delete?id={{serie.key.urlsafe()}}" method="post">
+	<p align="right"><img src="{{serie.picture}}"/></p>
 	<p>
-	{{serie.name}} {{serie.lastEpisode // 1000}}x{{serie.lastEpisode % 1000}}
-	<br><img src="{{serie.picture}}">
+	<big><b>{{serie.name}}</b></big> <i>({{serie.added}})</i>
+		<br><big>{{serie.lastEpisode // 1000}}x{{serie.lastEpisode % 1000}}</big>
 	<br><a target="_blank" href="{{serie.web}}">Web</a>
 	<br>{{serie.comments}}
 	</p>
-	<input class="styled-button" title="erase" type="submit" value="&#9003;"/>
+	<input type="image"
+	 	width="16px" height="16px"
+		class="styled-button" src="/res/delete.svg"
+	 	title="delete" alt="delete"
+		onSubmit="javascript: document.tblSeries.submit()"
+		/>
 </form>
 </div>
 <div id="dvActions">
-		<input class="styled-button" type="button" value="<<" onClick="javascript: window.location='/main';"/>
+		<a href="/main"><img width="24px" height="24px" title="back" class="styled-button" src="/res/back.svg"/></a>
 </div>
 </body>
 </html>
