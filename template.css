@@ -16,6 +16,16 @@
   font-size: 16pt
 }
 
+#dvError {
+  display: none;
+  color: white;
+  background-color: red;
+  margin: 20px;
+  padding: 10px;
+  font-size: 16pt;
+  font-weight: bold;
+}
+
 #dvActions {
   margin: 20px;
   padding: 10px;

@@ -64,6 +64,7 @@ class ModifyHandler(webapp2.RequestHandler):
     	user = users.get_current_user()
 
     	if user != None:
+            # Get serie by key
     		try:
     			serie = ndb.Key(urlsafe = id).get()
     		except:
@@ -79,11 +80,22 @@ class ModifyHandler(webapp2.RequestHandler):
     		except:
     			pass
 
-    		serie.name = self.request.get("name")
-    		serie.picture = self.request.get("picture")
-    		serie.web = self.request.get("web")
-    		serie.comments = self.request.get("comments")
+    		serie.name = self.request.get("name").strip()
+    		serie.picture = self.request.get("picture").strip()
+    		serie.web = self.request.get("web").strip()
+    		serie.comments = self.request.get("comments").strip()
     		serie.lastEpisode = (season * 1000) + episode
+
+    		# Chk
+    		if len(serie.name) < 1:
+				self.redirect("/error?msg=" + "Modification aborted: serie's name is mandatory")
+				return
+
+    		if serie.lastEpisode < 1:
+				self.redirect("/error?msg=" + "Modification aborted: serie's episode should be greater than 1")
+				return
+
+            # Save
     		serie.put()
     		time.sleep(1)
     		self.redirect("/main")
